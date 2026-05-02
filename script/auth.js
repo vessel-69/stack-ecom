@@ -1,18 +1,15 @@
 // ============================================
 // STACK - auth.js
-// handles cart panel, profile state, sign out
-// included on tit.html and page2.html
+// cart panel + profile/auth state
+// runs on tit.html and page2.html
 // ============================================
 
 
-// -----------------------------------------------
-// CART HELPERS  (localStorage)
-// -----------------------------------------------
+// ─── CART HELPERS ────────────────────────────────────────────────────────
 
 function getCart() {
-    var raw = localStorage.getItem('stackCart');
-    if (!raw) return [];
-    try { return JSON.parse(raw); } catch(e) { return []; }
+    try { return JSON.parse(localStorage.getItem('stackCart') || '[]'); }
+    catch(e) { return []; }
 }
 
 function saveCart(items) {
@@ -20,39 +17,33 @@ function saveCart(items) {
 }
 
 function getCartCount() {
-    return getCart().reduce(function(sum, item) { return sum + item.qty; }, 0);
+    return getCart().reduce(function(n, item) { return n + item.qty; }, 0);
 }
 
 function updateCartBadge() {
-    var badge = document.getElementById('cartBadge');
-    var cpCount = document.getElementById('cpCount');
-    var cpItemCount = document.getElementById('cpItemCount');
-    var count = getCartCount();
+    var count  = getCartCount();
+    var badge  = document.getElementById('cartBadge');
+    var cpHead = document.getElementById('cpCount');
+    var cpFoot = document.getElementById('cpItemCount');
 
     if (badge) {
         badge.textContent = count;
-        if (count > 0) {
-            badge.classList.add('visible');
-        } else {
-            badge.classList.remove('visible');
-        }
+        count > 0 ? badge.classList.add('visible') : badge.classList.remove('visible');
     }
-    if (cpCount) cpCount.textContent = count;
-    if (cpItemCount) cpItemCount.textContent = count;
+    if (cpHead) cpHead.textContent = count;
+    if (cpFoot) cpFoot.textContent = count;
 }
 
 
-// -----------------------------------------------
-// CART PANEL - open / close
-// -----------------------------------------------
+// ─── CART PANEL OPEN / CLOSE ─────────────────────────────────────────────
 
 function openCart() {
+    renderCartPanel();
     var panel   = document.getElementById('cartPanel');
     var overlay = document.getElementById('cartOverlay');
     if (!panel) return;
-    renderCartPanel();
     panel.classList.add('open');
-    overlay.classList.add('open');
+    if (overlay) overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
 }
 
@@ -61,9 +52,12 @@ function closeCart() {
     var overlay = document.getElementById('cartOverlay');
     if (!panel) return;
     panel.classList.remove('open');
-    overlay.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
     document.body.style.overflow = '';
 }
+
+
+// ─── RENDER CART ITEMS ───────────────────────────────────────────────────
 
 function renderCartPanel() {
     var cart    = getCart();
@@ -72,87 +66,89 @@ function renderCartPanel() {
     var footer  = document.getElementById('cpFooter');
     if (!list) return;
 
+    updateCartBadge();
+
     if (cart.length === 0) {
-        list.innerHTML  = '';
-        if (empty)  empty.style.display  = 'block';
+        list.innerHTML = '';
+        if (empty)  empty.style.display = 'block';
         if (footer) footer.classList.remove('visible');
         return;
     }
 
-    if (empty)  empty.style.display  = 'none';
+    if (empty)  empty.style.display = 'none';
     if (footer) footer.classList.add('visible');
 
-    var html = '';
-    cart.forEach(function(item, i) {
-        html +=
-            '<li class="cp-item">' +
-                '<div class="cp-item-info">' +
-                    '<span class="cp-item-name">' + item.name + '</span>' +
-                    '<span class="cp-item-tag">FREE</span>' +
-                '</div>' +
-                '<div class="cp-item-controls">' +
-                    '<button class="cp-qty-btn" onclick="decreaseQty(' + i + ')">-</button>' +
-                    '<span class="cp-qty">' + item.qty + '</span>' +
-                    '<button class="cp-qty-btn" onclick="increaseQty(' + i + ')">+</button>' +
-                    '<button class="cp-remove-btn" onclick="removeFromCart(' + i + ')">Remove</button>' +
-                '</div>' +
-            '</li>';
-    });
-    list.innerHTML = html;
-    updateCartBadge();
+    list.innerHTML = cart.map(function(item, i) {
+        var imgMarkup = item.img
+            ? '<img class="cp-item-img" src="' + item.img + '" alt="' + item.name + '" onerror="this.style.display=\'none\'">'
+            : '<div class="cp-item-img cp-no-img"></div>';
+
+        return '<li class="cp-item">' +
+            imgMarkup +
+            '<div class="cp-item-info">' +
+                '<span class="cp-item-name">' + item.name + '</span>' +
+                '<span class="cp-item-price">FREE</span>' +
+            '</div>' +
+            '<div class="cp-qty-wrap">' +
+                '<button class="cp-qty-btn cp-dec" onclick="changeQty(' + i + ',-1)">&#8722;</button>' +
+                '<span class="cp-qty-num">' + item.qty + '</span>' +
+                '<button class="cp-qty-btn cp-inc" onclick="changeQty(' + i + ',1)">&#43;</button>' +
+            '</div>' +
+            '<button class="cp-remove-btn" onclick="removeFromCart(' + i + ')" title="Remove item">&#x2715;</button>' +
+        '</li>';
+    }).join('');
 }
 
 
-// -----------------------------------------------
-// CART ACTIONS - add / remove / qty
-// -----------------------------------------------
+// ─── CART MUTATIONS ───────────────────────────────────────────────────────
 
-function addToCart(productName) {
+function addToCart(productName, btnEl) {
+    // grab image from the product card that contains this button
+    var card  = btnEl.closest ? btnEl.closest('.product') : null;
+    var imgEl = card ? card.querySelector('.product-img-wrap img') : null;
+    var img   = imgEl ? imgEl.src : '';
+
     var cart     = getCart();
-    var existing = cart.find(function(item) { return item.name === productName; });
+    var existing = cart.find(function(it) { return it.name === productName; });
     if (existing) {
         existing.qty += 1;
     } else {
-        cart.push({ name: productName, qty: 1 });
+        cart.push({ name: productName, qty: 1, img: img });
     }
     saveCart(cart);
     updateCartBadge();
 
-    // show toast
+    // toast
     var toast = document.getElementById('toastMsg');
     if (toast) {
-        toast.textContent = 'Added to cart: ' + productName;
+        toast.textContent = 'Added: ' + productName;
         toast.classList.add('show');
-        setTimeout(function() { toast.classList.remove('show'); }, 2500);
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 2400);
     }
 }
 
-function removeFromCart(index) {
+function removeFromCart(i) {
     var cart = getCart();
-    cart.splice(index, 1);
+    cart.splice(i, 1);
     saveCart(cart);
     renderCartPanel();
 }
 
-function increaseQty(index) {
+function changeQty(i, delta) {
     var cart = getCart();
-    if (!cart[index]) return;
-    cart[index].qty += 1;
-    saveCart(cart);
-    renderCartPanel();
-}
-
-function decreaseQty(index) {
-    var cart = getCart();
-    if (!cart[index]) return;
-    if (cart[index].qty <= 1) {
-        removeFromCart(index);
-        return;
+    if (!cart[i]) return;
+    cart[i].qty += delta;
+    if (cart[i].qty < 1) {
+        cart.splice(i, 1);
     }
-    cart[index].qty -= 1;
     saveCart(cart);
     renderCartPanel();
 }
+
+// kept for backwards compatibility
+function increaseQty(i) { changeQty(i, 1); }
+function decreaseQty(i) { changeQty(i, -1); }
 
 function clearCart() {
     saveCart([]);
@@ -161,74 +157,61 @@ function clearCart() {
 }
 
 function checkoutClick() {
-    var currentUser = localStorage.getItem('stackCurrentUser');
-    if (!currentUser) {
+    if (!localStorage.getItem('stackCurrentUser')) {
         closeCart();
-        // redirect to login - works from both root and pages/
-        var isInPages = window.location.pathname.indexOf('/pages/') !== -1;
-        window.location.href = isInPages ? 'login,signup.html' : 'pages/login,signup.html';
+        var inPages = window.location.pathname.indexOf('/pages/') !== -1;
+        window.location.href = inPages ? 'login,signup.html' : 'pages/login,signup.html';
         return;
     }
-    var count = getCartCount();
-    if (count === 0) return;
-    // demo checkout - show toast
+    if (getCartCount() === 0) return;
     var toast = document.getElementById('toastMsg');
     if (toast) {
-        toast.textContent = 'Checkout coming soon fr';
+        toast.textContent = 'Checkout coming soon - we are working on it fr';
         toast.classList.add('show');
-        setTimeout(function() { toast.classList.remove('show'); }, 3000);
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 3000);
     }
 }
 
 
-// -----------------------------------------------
-// PROFILE DROPDOWN
-// -----------------------------------------------
+// ─── PROFILE DROPDOWN ────────────────────────────────────────────────────
 
 function toggleProfileDropdown() {
     var drop = document.getElementById('profileDropdown');
-    if (!drop) return;
-    drop.classList.toggle('open');
+    if (drop) drop.classList.toggle('open');
 }
 
-// close dropdown when clicking outside
 document.addEventListener('click', function(e) {
     var area = document.getElementById('profileArea');
     var drop = document.getElementById('profileDropdown');
-    if (!area || !drop) return;
-    if (!area.contains(e.target)) {
+    if (area && drop && !area.contains(e.target)) {
         drop.classList.remove('open');
     }
 });
 
 function logout() {
     localStorage.removeItem('stackCurrentUser');
-    var isInPages = window.location.pathname.indexOf('/pages/') !== -1;
-    window.location.href = isInPages ? 'login,signup.html' : 'pages/login,signup.html';
+    var inPages = window.location.pathname.indexOf('/pages/') !== -1;
+    window.location.href = inPages ? 'login,signup.html' : 'pages/login,signup.html';
 }
 
 
-// -----------------------------------------------
-// AUTH STATE - init on page load
-// shows profile icon if logged in, LOGIN btn if not
-// -----------------------------------------------
+// ─── AUTH STATE INIT ─────────────────────────────────────────────────────
 
 function initAuthState() {
-    var currentUser = localStorage.getItem('stackCurrentUser');
+    var user        = localStorage.getItem('stackCurrentUser');
     var loginBtn    = document.getElementById('loginBtn');
     var profileArea = document.getElementById('profileArea');
     var pdName      = document.getElementById('pdName');
-    var profileUser = document.getElementById('profileUsername');
+    var avatar      = document.getElementById('profileAvatar');
 
-    if (currentUser) {
-        // hide login button, show profile area
-        if (loginBtn)    loginBtn.style.display = 'none';
+    if (user) {
+        if (loginBtn)    loginBtn.style.display    = 'none';
         if (profileArea) profileArea.style.display = 'flex';
-        if (pdName)      pdName.textContent = currentUser;
-        if (profileUser) profileUser.textContent = currentUser.charAt(0).toUpperCase();
+        if (pdName)      pdName.textContent         = user;
+        if (avatar)      avatar.textContent         = user.charAt(0).toUpperCase();
     } else {
-        // show login button, hide profile
-        if (loginBtn)    loginBtn.style.display = 'inline-flex';
+        if (loginBtn)    loginBtn.style.display    = 'inline-flex';
         if (profileArea) profileArea.style.display = 'none';
     }
 
@@ -236,9 +219,7 @@ function initAuthState() {
 }
 
 
-// -----------------------------------------------
-// RUN on every page load
-// -----------------------------------------------
+// ─── BOOT ────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', function() {
     initAuthState();
