@@ -1,48 +1,152 @@
 // ============================================
-// STACK — login.js
-// Handles login/register form toggle and validation
-//
-// Kept the jQuery toggle from the original login,signup.js
-// just cleaned it up and added some basic validation
+// STACK - login.js
+// login and register - both fully working
+// uses localStorage to store accounts
+// no backend needed since this is a static site
 // ============================================
 
 
-// toggle between login and register forms
-// this was in the original file — same concept just cleaner
-$('.switch-link').click(function() {
-    $('form').animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
+// wait for DOM to be ready before anything
+$(document).ready(function() {
+
+    // -----------------------------------------------
+    // TOGGLE between login and register forms
+    // replaces the old jQuery animate which was janky
+    // now just swaps display states cleanly
+    // -----------------------------------------------
+    $('.switch-link').click(function(e) {
+        e.preventDefault();
+
+        var loginForm    = $('#loginForm');
+        var registerForm = $('#registerForm');
+
+        if (loginForm.is(':visible')) {
+            loginForm.hide();
+            registerForm.show();
+        } else {
+            registerForm.hide();
+            loginForm.show();
+        }
+
+        // clear any errors when switching
+        $('#regErr').text('');
+        $('#logErr').text('');
+    });
+
+
+    // -----------------------------------------------
+    // REGISTER - create a new account
+    // validates all fields then saves to localStorage
+    // -----------------------------------------------
+    $('#createBtn').click(function(e) {
+        e.preventDefault();
+
+        var name  = $('#regName').val().trim();
+        var user  = $('#regUser').val().trim();
+        var email = $('#regEmail').val().trim();
+        var pass  = $('#regPass').val();
+        var err   = $('#regErr');
+
+        err.text('');
+
+        if (name === '' || user === '' || email === '' || pass === '') {
+            err.text('Fill in all the fields');
+            return;
+        }
+
+        if (!email.includes('@') || email.indexOf('.', email.indexOf('@')) < 0) {
+            err.text('That email does not look right');
+            return;
+        }
+
+        if (pass.length < 8) {
+            err.text('Password needs at least 8 characters');
+            return;
+        }
+
+        var users = getUsers();
+
+        var usernameTaken = users.find(function(u) {
+            return u.username.toLowerCase() === user.toLowerCase();
+        });
+
+        if (usernameTaken) {
+            err.text('That username is already taken, try another one');
+            return;
+        }
+
+        var emailTaken = users.find(function(u) {
+            return u.email.toLowerCase() === email.toLowerCase();
+        });
+
+        if (emailTaken) {
+            err.text('An account with that email already exists');
+            return;
+        }
+
+        users.push({
+            name:     name,
+            username: user,
+            email:    email,
+            password: pass
+        });
+
+        saveUsers(users);
+        localStorage.setItem('stackCurrentUser', user);
+
+        window.location.href = 'create.html';
+    });
+
+
+    // -----------------------------------------------
+    // SIGN IN - check credentials against localStorage
+    // -----------------------------------------------
+    $('#signinBtn').click(function(e) {
+        e.preventDefault();
+
+        var identifier = $('#logUser').val().trim();
+        var pass       = $('#logPass').val();
+        var err        = $('#logErr');
+
+        err.text('');
+
+        if (identifier === '' || pass === '') {
+            err.text('Enter your username and password');
+            return;
+        }
+
+        var users = getUsers();
+
+        var match = users.find(function(u) {
+            return (
+                u.username.toLowerCase() === identifier.toLowerCase() ||
+                u.email.toLowerCase()    === identifier.toLowerCase()
+            ) && u.password === pass;
+        });
+
+        if (!match) {
+            err.text('Wrong username or password, try again');
+            return;
+        }
+
+        localStorage.setItem('stackCurrentUser', match.username);
+
+        window.location.href = '../tit.html';
+    });
+
 });
 
 
-// basic validation before create account
-$('#createBtn').click(function(e) {
-    e.preventDefault();
-
-    var name  = $('#regName').val().trim();
-    var user  = $('#regUser').val().trim();
-    var email = $('#regEmail').val().trim();
-    var pass  = $('#regPass').val().trim();
-    var err   = $('#regErr');
-
-    // check all fields are filled
-    if (name === '' || user === '' || email === '' || pass === '') {
-        err.text('All fields are required fr');
-        return;
+function getUsers() {
+    var raw = localStorage.getItem('stackUsers');
+    if (!raw) return [];
+    try {
+        return JSON.parse(raw);
+    } catch (e) {
+        return [];
     }
+}
 
-    // basic email check
-    if (!email.includes('@') || email.indexOf('.', email.indexOf('@')) < 0) {
-        err.text('That doesn\'t look like a valid email');
-        return;
-    }
-
-    // password length
-    if (pass.length < 8) {
-        err.text('Password needs to be at least 8 characters');
-        return;
-    }
-
-    // if all good — go to create success page
-    err.text('');
-    window.location.href = 'create.html';
-});
+function saveUsers(users) {
+    localStorage.setItem('stackUsers', JSON.stringify(users));
+}

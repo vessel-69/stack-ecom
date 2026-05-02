@@ -5,20 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="design/page2.css">
-    <link rel="website icon" type="png" href="logos/Atom.png">
+    <link rel="stylesheet" href="../design/page2.css">
+    <link rel="website icon" type="png" href="../logos/Atom.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <title>STACK — More Products</title>
+    <title>STACK - More Products</title>
 </head>
 <body>
+    <!-- Cart Overlay + Panel -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <aside class="cart-panel" id="cartPanel">
+        <div class="cart-panel-head">
+            <span>Your Cart (<span id="cpCount">0</span> items)</span>
+            <button class="cp-close-btn" onclick="closeCart()">&#x2715;</button>
+        </div>
+        <div class="cp-body" id="cpBody">
+            <p class="cp-empty-msg" id="cpEmpty">Nothing in your cart yet</p>
+            <ul class="cp-list" id="cpList"></ul>
+        </div>
+        <div class="cp-footer" id="cpFooter">
+            <div class="cp-summary">
+                <span>Total items</span>
+                <span id="cpItemCount">0</span>
+            </div>
+            <button class="cp-checkout-btn" onclick="checkoutClick()">Proceed to Checkout</button>
+            <button class="cp-clear-btn" onclick="clearCart()">Clear Cart</button>
+        </div>
+    </aside>
 
     <!-- ========== HEADER (same as page 1) ========== -->
     <header class="main-header">
 
         <div class="logo-wrap">
-            <a href="tit.html">
-                <img src="logos/Atom.png" alt="Stack Logo" width="38">
+            <a href="../tit.html">
+                <img src="../logos/Atom.png" alt="Stack Logo" width="38">
                 <span class="site-name">STACK</span>
             </a>
         </div>
@@ -40,14 +61,47 @@
         </div>
 
         <div class="header-right">
-            <div class="cart-icon-wrap" id="cartWrap">
-                <span class="cart-icon">🛒</span>
+            <div class="cart-icon-wrap" id="cartWrap" onclick="openCart()">
+                <span class="cart-icon"></span>
                 <span class="cart-badge" id="cartBadge">0</span>
             </div>
-            <a href="login,signup.html" class="login-btn">LOGIN</a>
+                        <a href="login,signup.html" class="login-btn" id="loginBtn">LOGIN</a>
+            <div class="profile-area" id="profileArea">
+                <button class="profile-btn" onclick="toggleProfileDropdown()">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                    <span id="profileUsername"></span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <span class="pd-username" id="pdName"></span>
+                    <a href="login,signup.html" class="pd-link">My Account</a>
+                    <button class="pd-logout" onclick="logout()">Log Out</button>
+                </div>
+            </div>
         </div>
 
     </header>
+
+    <!-- cart overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <!-- cart drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-head">
+            <h3>Your Cart</h3>
+            <button class="cart-close-btn" onclick="closeCart()">Close</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <p class="empty-cart-msg">Nothing in your cart yet</p>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total-line">
+                <span>Total</span>
+                <span class="cart-total-amt">FREE</span>
+            </div>
+            <button class="checkout-btn" onclick="doCheckout()">Checkout</button>
+            <button class="clear-cart-link" onclick="clearCart()">Clear Cart</button>
+        </div>
+    </div>
 
     <!-- toast notification -->
     <div class="toast" id="toastMsg"></div>
@@ -95,7 +149,7 @@
 
                 <div class="product" data-name="gymnastics ring wooden premium" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/gymnasticsring.png" alt="Gymnastics Ring">
+                        <img src="../img/gymnasticsring.png" alt="Gymnastics Ring">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -103,7 +157,7 @@
                         <p class="product-desc">Train like an athlete. Core strength unlocked.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Gymnastics Ring')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Gymnastics Ring', this)\">Add to Cart</button>
                         </div>
                         <!-- details panel - hidden, shown by toggleDetails() -->
                         <div class="details-panel" id="details-0">
@@ -115,7 +169,7 @@
 
                 <div class="product" data-name="steel dip bar dips fitness calisthenics" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/dip_bars.png" alt="Dip Bar">
+                        <img src="../img/dip_bars.png" alt="Dip Bar">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -123,7 +177,7 @@
                         <p class="product-desc">Best triceps investment you'll make</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Steel Dip Bar')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Steel Dip Bar', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-1">
                             <p>Steel build. Non-slip grip handles. Foldable for storage. Up to 150kg load.</p>
@@ -134,7 +188,7 @@
 
                 <div class="product" data-name="pull up bar pullups fitness home gym" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/pullupbar.png" alt="Pull Up Bar">
+                        <img src="../img/pullupbar.png" alt="Pull Up Bar">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -142,7 +196,7 @@
                         <p class="product-desc">Doorframe fits. No excuses now.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Pull-Up Bar')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Pull-Up Bar', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-2">
                             <p>Fits most door frames (60-100cm). Max 120kg. Multiple grip positions.</p>
@@ -153,7 +207,7 @@
 
                 <div class="product" data-name="wooden parallettes premium calisthenics handstand" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/parallettes.png" alt="Wooden Parallettes">
+                        <img src="../img/parallettes.png" alt="Wooden Parallettes">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -161,7 +215,7 @@
                         <p class="product-desc">For the L-sit grind. Respect.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Wooden Parallettes')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Wooden Parallettes', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-3">
                             <p>Hardwood birch. Non-slip rubber feet. Perfect for L-sits, handstands, pushups.</p>
@@ -172,7 +226,7 @@
 
                 <div class="product" data-name="steel parallettes calisthenics workout" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/steelpara.png" alt="Steel Parallettes">
+                        <img src="../img/steelpara.png" alt="Steel Parallettes">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -180,7 +234,7 @@
                         <p class="product-desc">Heavy duty. Built different.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Steel Parallettes')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Steel Parallettes', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-4">
                             <p>Thick steel tubing. Foam grip. Adjustable height. Max 200kg load.</p>
@@ -191,7 +245,7 @@
 
                 <div class="product" data-name="weighted vest 15kg training fitness" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/weightedvest.png" alt="Weighted Vest">
+                        <img src="../img/weightedvest.png" alt="Weighted Vest">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -199,7 +253,7 @@
                         <p class="product-desc">When bodyweight gets too easy</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Weighted Vest 15KG')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Weighted Vest 15KG', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-5">
                             <p>Removable iron plates. Breathable fabric. Fits most body sizes. 15-30kg range.</p>
@@ -210,7 +264,7 @@
 
                 <div class="product" data-name="resistance band workout stretching exercise" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/resistance-band.png" alt="Resistance Band">
+                        <img src="../img/resistance-band.png" alt="Resistance Band">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -218,7 +272,7 @@
                         <p class="product-desc">Underrated. Genuinely works.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Resistance Band')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Resistance Band', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-6">
                             <p>Set of 5 resistance levels. Latex material. Great for warm-ups and assistance work.</p>
@@ -229,7 +283,7 @@
 
                 <div class="product" data-name="wrist wrap support gym lifting" data-category="fitness">
                     <div class="product-img-wrap">
-                        <img src="img/wristwrap.png" alt="Wrist Wrap">
+                        <img src="../img/wristwrap.png" alt="Wrist Wrap">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -237,7 +291,7 @@
                         <p class="product-desc">Your joints matter. Protect them.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Wrist Wrap')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Wrist Wrap', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-7">
                             <p>Cotton + elastic blend. Velcro strap. Great for heavy lifting or handstand training.</p>
@@ -250,7 +304,7 @@
 
                 <div class="product" data-name="adidas football world cup al rihla soccer" data-category="sports">
                     <div class="product-img-wrap">
-                        <img src="img/football.png" alt="Adidas Football">
+                        <img src="../img/football.png" alt="Adidas Football">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -258,7 +312,7 @@
                         <p class="product-desc">World Cup official ball. Close enough.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('Adidas Football')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('Adidas Football', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-8">
                             <p>Official FIFA World Cup 2022 ball replica. Thermally bonded panels. Size 5.</p>
@@ -271,7 +325,7 @@
 
                 <div class="product" data-name="3d printer fdm printing tech" data-category="tech">
                     <div class="product-img-wrap">
-                        <img src="img/3dprinter.png" alt="3D Printer">
+                        <img src="../img/3dprinter.png" alt="3D Printer">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -279,7 +333,7 @@
                         <p class="product-desc">Print literally anything. Dangerous power.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('3D Printer')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('3D Printer', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-9">
                             <p>FDM technology. 220x220 bed. PLA/ABS/PETG compatible. Auto bed leveling.</p>
@@ -290,7 +344,7 @@
 
                 <div class="product" data-name="iss spacecraft model space zvezda" data-category="tech">
                     <div class="product-img-wrap">
-                        <img src="img/iss.png" alt="ISS Spacecraft">
+                        <img src="../img/iss.png" alt="ISS Spacecraft">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -298,7 +352,7 @@
                         <p class="product-desc">For the space nerds. No shame.</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('ISS Zvezda Model')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('ISS Zvezda Model', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-10">
                             <p>Highly detailed scale model. Die-cast metal + plastic. 1:400 scale. Display stand included.</p>
@@ -309,7 +363,7 @@
 
                 <div class="product" data-name="integrated circuit ic gen4 chip semiconductor" data-category="tech">
                     <div class="product-img-wrap">
-                        <img src="img/ic.png" alt="Integrated Circuit">
+                        <img src="../img/ic.png" alt="Integrated Circuit">
                         <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
                     </div>
                     <div class="product-info">
@@ -317,7 +371,7 @@
                         <p class="product-desc">For the tinkerers and hackers out there</p>
                         <div class="product-bottom">
                             <span class="price">FREE</span>
-                            <button class="add-cart-btn" onclick="addToCart('IC Gen-4')">Add to Cart</button>
+                            <button class="add-cart-btn" onclick=\"addToCart('IC Gen-4', this)\">Add to Cart</button>
                         </div>
                         <div class="details-panel" id="details-11">
                             <p>Multi-function logic IC. 5V compatible. 40-pin DIP package. Great for Arduino projects.</p>
@@ -330,7 +384,7 @@
 
                 <div class="product coming-soon-card" data-name="coming soon" data-category="coming">
                     <div class="product-img-wrap">
-                        <img src="img/comingsoon.png" alt="Coming Soon">
+                        <img src="../img/comingsoon.png" alt="Coming Soon">
                     </div>
                     <div class="product-info">
                         <h3>Coming Soon...</h3>
@@ -344,7 +398,7 @@
 
                 <div class="product coming-soon-card" data-name="coming soon" data-category="coming">
                     <div class="product-img-wrap">
-                        <img src="img/comingsoon.png" alt="Coming Soon">
+                        <img src="../img/comingsoon.png" alt="Coming Soon">
                     </div>
                     <div class="product-info">
                         <h3>Coming Soon...</h3>
@@ -358,11 +412,11 @@
 
                 <div class="product coming-soon-card" data-name="coming soon" data-category="coming">
                     <div class="product-img-wrap">
-                        <img src="img/comingsoon.png" alt="Coming Soon">
+                        <img src="../img/comingsoon.png" alt="Coming Soon">
                     </div>
                     <div class="product-info">
                         <h3>Coming Soon...</h3>
-                        <p class="product-desc">Can't say what it is yet 👀</p>
+                        <p class="product-desc">Can't say what it is yet </p>
                         <div class="product-bottom">
                             <span class="price coming-price">???</span>
                             <button class="add-cart-btn disabled-btn" disabled>Not Yet</button>
@@ -379,7 +433,7 @@
     <section class="newsletter-section">
         <div class="newsletter-inner">
             <h2>Stay in the loop</h2>
-            <p>New drops, deals, and gear updates — straight to your inbox.</p>
+            <p>New drops, deals, and gear updates, straight to your inbox.</p>
             <div class="newsletter-form">
                 <input type="email" id="emailInput" placeholder="your@email.com" class="email-input">
                 <button class="subscribe-btn" onclick="validateNewsletter()">Subscribe</button>
@@ -391,8 +445,8 @@
 
     <!-- ========== PAGINATION ========== -->
     <div class="pagination">
-        <a href="tit.html" class="prev-btn">← Back</a>
-        <a href="tit.html" class="page-btn">1</a>
+        <a href="../tit.html" class="prev-btn">← Back</a>
+        <a href="../tit.html" class="page-btn">1</a>
         <a href="page2.html" class="page-btn active">2</a>
     </div>
 
@@ -401,7 +455,7 @@
         <div class="footer-inner">
 
             <div class="footer-brand">
-                <img src="logos/Atom.png" alt="Stack logo" width="36">
+                <img src="../logos/Atom.png" alt="Stack logo" width="36">
                 <span class="footer-name">STACK</span>
                 <p class="footer-tagline">Build your setup. Your way.</p>
             </div>
@@ -418,15 +472,15 @@
 
             <div class="footer-socials">
                 <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/sw_aayush/" target="_blank" class="soc-link">
-                        <img src="logos/instagram.png" alt="Instagram" width="28">
+                                <div class="social-icons">
+                    <a href="https://www.instagram.com/sw_aayush/" target="_blank" class="soc-link soc-ig" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <a href="https://www.youtube.com/@aayush_workout" target="_blank" class="soc-link">
-                        <img src="logos/Youtube.png" alt="YouTube" width="28">
+                    <a href="https://github.com/aayushdev" target="_blank" class="soc-link soc-gh" title="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
-                    <a href="https://www.facebook.com/https.aayushdev" target="_blank" class="soc-link">
-                        <img src="logos/facebook.png" alt="Facebook" width="28">
+                    <a href="https://linkedin.com/in/aayushdev" target="_blank" class="soc-link soc-li" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                 </div>
             </div>
@@ -434,11 +488,12 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2023 STACK E-commerce. All rights reserved — Team B.</p>
+            <p>&copy; 2023 STACK E-commerce, All rights reserved - vessel-69</p>
         </div>
     </footer>
-
-    <script src="script/page2.js"></script>
+    <script src="../script/auth.js"></script>
+    <script src="../script/shared.js"></script>
+    <script src="../script/page2.js"></script>
 
 </body>
 </html>

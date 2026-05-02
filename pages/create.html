@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="website icon" type="png" href="logos/Atom.png">
-    <link rel="stylesheet" href="design/pages.css">
+    <link rel="website icon" type="png" href="../logos/Atom.png">
+    <link rel="stylesheet" href="../design/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>STACK — Account Created</title>
+    <title>STACK - Account Created</title>
 
     <style>
         /* success page specific styles */
@@ -110,16 +111,16 @@
 </head>
 <body>
 
-    <!-- minimal header — no nav needed on this page -->
+    <!-- minimal header, no nav needed on this page -->
     <header class="main-header">
         <div class="logo-wrap">
-            <a href="tit.html">
-                <img src="logos/Atom.png" alt="Stack Logo" width="38">
+            <a href="../tit.html">
+                <img src="../logos/Atom.png" alt="Stack Logo" width="38">
                 <span class="site-name">STACK</span>
             </a>
         </div>
         <div class="header-right">
-            <a href="tit.html" class="login-btn">Browse Store</a>
+            <a href="../tit.html" class="login-btn" id="loginNavBtn">Browse Store</a>
         </div>
     </header>
 
@@ -129,11 +130,11 @@
             <div class="success-icon">&#10003;</div>
 
             <h1>Account Created</h1>
-            <p>You're all set — your STACK account is ready to go — go check out the store and build your setup</p>
+            <p>You're all set, your STACK account is ready to go - check out the store and build your setup</p>
 
             <div class="success-actions">
                 <a href="login,signup.html" class="btn-primary">Sign In</a>
-                <a href="tit.html" class="btn-secondary">Browse Store</a>
+                <a href="../tit.html" class="btn-secondary">Browse Store</a>
             </div>
 
             <p class="redirect-note">Redirecting to login in <span id="countdown">5</span>s</p>
@@ -142,7 +143,7 @@
     </div>
 
     <script>
-        // countdown and redirect — nothing fancy just works
+        // countdown and redirect, nothing fancy
         var seconds = 5;
         var countEl = document.getElementById('countdown');
 
@@ -156,6 +157,6 @@
             }
         }, 1000);
     </script>
-
+    <script src="../script/shared.js"></script>
 </body>
 </html>

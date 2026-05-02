@@ -1,5 +1,5 @@
 /* ============================================
-   STACK — pages.css
+   STACK pages.css
    shared styles for all the inner pages
    (about, contact, services, help, affiliate etc)
    ============================================ */
@@ -721,3 +721,132 @@ footer {
         font-size: 32px;
     }
 }
+   SOCIAL ICONS - Font Awesome version
+   ============================================ */
+
+.soc-link i {
+    font-size: 17px;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.soc-link:hover i { color: #e0e0e0; }
+.soc-link.soc-ig:hover i { color: #e1306c; }
+.soc-link.soc-gh:hover i { color: #e0e0e0; }
+.soc-link.soc-li:hover i { color: #0077b5; }
+}
+
+.profile-greeting {
+    padding: 4px 16px 10px;
+    font-size: 12px;
+    color: #777;
+    border-bottom: 1px solid #1e1e1e;
+    margin-bottom: 8px;
+}
+
+.profile-greeting strong {
+    color: #00c8ff;
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+.profile-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    color: #777;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    height: auto;
+    width: auto;
+}
+
+.profile-dropdown-item:hover {
+    color: #ff4545;
+    background: rgba(255,69,69,0.06);
+}
+
+/* PRODUCT CARD SYMMETRY */
+.product {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 12px 14px;
+}
+
+.product-desc {
+    flex: 1;
+}
+
+.product-bottom {
+    margin-top: 10px;
+}
+
+/* Social icons SVG */
+.soc-link svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    transition: color 0.2s;
+}
+
+.soc-link {
+    color: #444;
+}
+
+.soc-link:hover {
+    color: #00c8ff;
+}
+
+/* Cart wrap clickable */
+.cart-icon-wrap {
+    cursor: pointer;
+}
+
+/* profile area in inner pages headers */
+.profile-area { position: relative; display: none; align-items: center; }
+.profile-area.visible { display: flex; }
+.profile-btn {
+    display: flex; align-items: center; gap: 7px;
+    background: transparent; border: 1.5px solid #00c8ff;
+    border-radius: 8px; padding: 7px 13px;
+    color: #00c8ff; font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    transition: background 0.2s; width: auto; height: auto; white-space: nowrap;
+}
+.profile-btn:hover { background: rgba(0,200,255,0.1); }
+.profile-btn svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+.profile-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: #111; border: 1px solid #1e1e1e;
+    border-radius: 10px; padding: 8px 0; min-width: 170px;
+    z-index: 150; display: none; box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+}
+.profile-dropdown.open { display: block; }
+.pd-username {
+    display: block; padding: 8px 16px 12px;
+    font-size: 13px; font-weight: 600; color: #e0e0e0;
+    border-bottom: 1px solid #1e1e1e; margin-bottom: 4px;
+}
+.pd-link { display: block; padding: 8px 16px; font-size: 13px; color: #666; text-decoration: none; transition: color 0.2s; }
+.pd-link:hover { color: #00c8ff; }
+.pd-logout {
+    display: block; width: 100%; padding: 8px 16px;
+    background: none; border: none; text-align: left;
+    font-size: 13px; color: #ff4545; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; height: auto;
+    transition: background 0.2s; border-radius: 0;
+}
+.pd-logout:hover { background: rgba(255,69,69,0.08); }

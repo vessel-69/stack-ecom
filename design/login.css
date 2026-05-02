@@ -1,5 +1,5 @@
 /* ============================================
-   STACK — login.css
+   STACK login.css
    login and register page styles
    kept the original glowing border button effect
    but updated everything else to match the theme
@@ -92,7 +92,7 @@ a {
     position: relative;
 }
 
-/* hide register by default — jquery toggles it */
+/* hide register by default jquery toggles it */
 .register-form {
     display: none;
 }
@@ -180,7 +180,7 @@ a {
                 0 0 40px rgba(0, 200, 255, 0.4);
 }
 
-/* the four animated border lines — original from login,signup.css */
+/* the four animated border lines original from login,signup.css */
 .glow-btn span {
     position: absolute;
     display: block;
