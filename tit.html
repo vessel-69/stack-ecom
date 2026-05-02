@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="design/tit.css">
+    <link rel="website icon" type="png" href="logos/Atom.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>STACK </title>
+</head>
+<body>
+
+    <!-- TOP HEADER  -->
+    <header class="main-header">
+
+        <div class="logo-wrap">
+            <a href="tit.html">
+                <img src="logos/Atom.png" alt="Stack Logo" width="38">
+                <span class="site-name">STACK</span>
+            </a>
+        </div>
+
+        <nav class="top-nav">
+            <ul>
+                <li><a href="Aboutus.html">About Us</a></li>
+                <li><a href="becomeaseller.html">Become a Seller</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- search bars -->
+        <div class="search-wrap">
+            <input class="search-input" id="searchBar" placeholder="Search products..." type="search" onkeyup="filterProducts()">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"/>
+            </svg>
+        </div>
+
+        <div class="header-right">
+            <div class="cart-icon-wrap" id="cartWrap">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <a href="login,signup.html" class="login-btn">LOGIN</a>
+        </div>
+
+    </header>
+
+    <!--  toast notification  -->
+    <div class="toast" id="toastMsg"></div>
+
+    <!--  SECOND NAV  -->
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="helpandsupport.html">Help &amp; Support</a></li>
+            <li><a href="affiliateprogram.html">Affiliate Program</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
+    </nav>
+
+    <!--  HERO BANNER  -->
+    <section class="hero">
+        <div class="hero-text">
+            <p class="hero-tag">NEW ARRIVALS DROPPED</p>
+            <h1>Build Your<br><span class="accent-word">Setup.</span></h1>
+            <p class="hero-sub">Gaming gear, PC parts, and all the tech you actually need.</p>
+        </div>
+        <div class="hero-glow"></div>
+    </section>
+
+    <!--  MAIN PRODUCTS  -->
+    <main>
+        <section id="products">
+            <h2 class="section-title">🔥 Hot Products</h2>
+
+            <!-- no results message, hidden by default -->
+            <p class="no-results" id="noResults" style="display:none;">Nothing matched your search. Try something else?</p>
+
+            <div class="products-grid">
+
+                <!-- each product card has a wishlist button and add to cart -->
+                <!-- i made the wishlist toggle with js (toggleWishlist function) -->
+
+                <div class="product" data-name="playstation 5">
+                    <div class="product-img-wrap">
+                        <img src="img/ps5.png" alt="PlayStation 5">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>PlayStation 5</h3>
+                        <p class="product-desc">Tera ghar isme chale jayega 💀</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('PlayStation 5')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="xbox 360">
+                    <div class="product-img-wrap">
+                        <img src="img/xbox360.png" alt="Xbox 360">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>X-BOX 360</h3>
+                        <p class="product-desc">Classic. Never gets old fr</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Xbox 360')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="nintendo switch">
+                    <div class="product-img-wrap">
+                        <img src="img/nintendoswitch.png" alt="Nintendo Switch">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Nintendo Switch</h3>
+                        <p class="product-desc">Portable + home console. Pretty W</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Nintendo Switch')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming pc set">
+                    <div class="product-img-wrap">
+                        <img src="img/gamingpc2.png" alt="Premium Gaming PC">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>PREMIUM GAMING PC SET</h3>
+                        <p class="product-desc">Goes hard. Seriously.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Premium Gaming PC')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming cpu">
+                    <div class="product-img-wrap">
+                        <img src="img/cpu1.png" alt="Gaming CPU">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming CPU</h3>
+                        <p class="product-desc">Fast. Very fast. Uncomfortably fast.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Gaming CPU')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming keyboard led mouse">
+                    <div class="product-img-wrap">
+                        <img src="img/keyboard.png" alt="LED Keyboard">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming Mouse + LED Keyboard</h3>
+                        <p class="product-desc">RGB = +10 FPS guaranteed</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('LED Keyboard + Mouse')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="ryzen core 7 cpu processor">
+                    <div class="product-img-wrap">
+                        <img src="img/ryzencore.png" alt="Ryzen Core 7">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>RYZEN CORE 7</h3>
+                        <p class="product-desc">AMD stay winning no cap</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Ryzen Core 7')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming headphone headset audio">
+                    <div class="product-img-wrap">
+                        <img src="img/headphone.png" alt="Gaming Headphones">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming Headphones</h3>
+                        <p class="product-desc">Hear every footstep. Clutch.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Gaming Headphones')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming mouse">
+                    <div class="product-img-wrap">
+                        <img src="img/mouse1.png" alt="Gaming Mouse">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming Mouse</h3>
+                        <p class="product-desc">Ergonomic. Your wrist will thank you</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Gaming Mouse')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="pc video card gpu graphics">
+                    <div class="product-img-wrap">
+                        <img src="img/videocard.png" alt="Video Card">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>PC Video Card</h3>
+                        <p class="product-desc">High fps. High temps. Worth it.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('PC Video Card')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="4k webcam livestream stream">
+                    <div class="product-img-wrap">
+                        <img src="img/webcamhd.png" alt="4K Webcam">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>4K WEBCAM</h3>
+                        <p class="product-desc">Time to hit that stream button</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('4K Webcam')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="graphic card fps gpu nvidia">
+                    <div class="product-img-wrap">
+                        <img src="img/graphiccard.png" alt="Graphic Card">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>GRAPHIC CARD</h3>
+                        <p class="product-desc">Better FPS = better life</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Graphic Card')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="playstation vr headset virtual reality">
+                    <div class="product-img-wrap">
+                        <img src="img/vrglass.png" alt="VR Headset">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>PS VR Headset</h3>
+                        <p class="product-desc">Leave this reality. Enter the good one</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('PS VR Headset')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="pc set computer desktop">
+                    <div class="product-img-wrap">
+                        <img src="img/Cpu.png" alt="PC Set">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>PC Set</h3>
+                        <p class="product-desc">Full tower build. Clean desk gang</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('PC Set')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="premium smart tv television 4k">
+                    <div class="product-img-wrap">
+                        <img src="img/Smarttv.png" alt="Smart TV">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium SMART TV</h3>
+                        <p class="product-desc">Plug the PS5 into this. GG.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Smart TV')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="apple macbook air laptop mac">
+                    <div class="product-img-wrap">
+                        <img src="img/macbook.png" alt="Macbook Air">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>APPLE MACBOOK AIR</h3>
+                        <p class="product-desc">For people who like the finer things</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Macbook Air')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="corsair ssd 1tb storage">
+                    <div class="product-img-wrap">
+                        <img src="img/ssd.png" alt="Corsair SSD">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>CORSAIR SSD — 1TB</h3>
+                        <p class="product-desc">Load times? What load times?</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Corsair SSD 1TB')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="sandisk 32gb pendrive usb">
+                    <div class="product-img-wrap">
+                        <img src="img/pendrive.png" alt="SanDisk 32GB">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SANDISK 32GB</h3>
+                        <p class="product-desc">Small but reliable. Like always</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('SanDisk 32GB')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="laptop multitasking work study">
+                    <div class="product-img-wrap">
+                        <img src="img/laplap.png" alt="Laptop">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>MULTI-TASKING LAPTOP</h3>
+                        <p class="product-desc">20 Chrome tabs? Easy.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Multi-Tasking Laptop')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="samsung ssd 960 pro storage nvme">
+                    <div class="product-img-wrap">
+                        <img src="img/samsungssd.png" alt="Samsung SSD 960 Pro">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SAMSUNG SSD 960 PRO</h3>
+                        <p class="product-desc">Samsung never misses tbh</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Samsung SSD 960 Pro')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming headset audio surround sound">
+                    <div class="product-img-wrap">
+                        <img src="img/gamingheadset.png" alt="Gaming Headset">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>GAMING HEADSET</h3>
+                        <p class="product-desc">Your teammates need to hear you rage</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Gaming Headset')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="gaming pc desktop setup">
+                    <div class="product-img-wrap">
+                        <img src="img/gamingpc.png" alt="Gaming PC">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>GAMING PC SET</h3>
+                        <p class="product-desc">Full setup. All in.</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Gaming PC Set')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="ryzen am4 socket cpu processor">
+                    <div class="product-img-wrap">
+                        <img src="img/ryzenn.png" alt="Socket Ryzen AM4">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>SOCKET RYZEN AM4</h3>
+                        <p class="product-desc">Upgrade season is here</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('Ryzen AM4 CPU')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product" data-name="raspberry pi ram ram enhancer">
+                    <div class="product-img-wrap">
+                        <img src="img/ramenchancer.png" alt="RAM Enhancer">
+                        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Raspberry Pi RAM Enhancer</h3>
+                        <p class="product-desc">Budget build secret weapon</p>
+                        <div class="product-bottom">
+                            <span class="price">FREE</span>
+                            <button class="add-cart-btn" onclick="addToCart('RAM Enhancer')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end products-grid -->
+        </section>
+    </main>
+
+    <!-- ========== PAGINATION ========== -->
+    <div class="pagination">
+        <a href="tit.html" class="page-btn active">1</a>
+        <a href="page2.html" class="page-btn">2</a>
+        <a href="page2.html" class="next-btn">Next →</a>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                <img src="logos/Atom.png" alt="Stack logo" width="36">
+                <span class="footer-name">STACK</span>
+                <p class="footer-tagline">Build your setup. Your way.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="Aboutus.html">About Us</a></li>
+                    <li><a href="becomeaseller.html">Become a Seller</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="helpandsupport.html">Help &amp; Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-socials">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sw_aayush/" target="_blank" class="soc-link ig">
+                        <img src="logos/instagram.png" alt="Instagram" width="28">
+                    </a>
+                    <a href="https://www.youtube.com/@aayush_workout" target="_blank" class="soc-link yt">
+                        <img src="logos/Youtube.png" alt="YouTube" width="28">
+                    </a>
+                    <a href="https://www.facebook.com/https.aayushdev" target="_blank" class="soc-link fb">
+                        <img src="logos/facebook.png" alt="Facebook" width="28">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 STACK E-commerce. All rights reserved — vessel-69</p>    
+        </div>
+    </footer>
+
+    <!-- js in script folder -->
+    <script src="script/main.js"></script>
+
+</body>
+</html>
