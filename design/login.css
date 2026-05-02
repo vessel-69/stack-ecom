@@ -1,150 +1,147 @@
-/* ============================================
-   STACK login.css
-   login and register page styles
-   kept the original glowing border button effect
-   but updated everything else to match the theme
-   ============================================ */
-
 :root {
-    --bg:         #0a0a0a;
-    --bg-card:    #111111;
-    --border:     #1e1e1e;
-    --accent:     #00c8ff;
-    --accent-dim: rgba(0, 200, 255, 0.12);
-    --text:       #e0e0e0;
-    --text-muted: #777;
-    --text-dim:   #444;
-    --white:      #ffffff;
-    --red:        #ff4545;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --border: #1e1e1e;
+  --accent: #00c8ff;
+  --accent-dim: rgba(0, 200, 255, 0.12);
+  --text: #e0e0e0;
+  --text-muted: #777;
+  --text-dim: #444;
+  --white: #ffffff;
+  --red: #ff4545;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    background: var(--bg);
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
+  background: var(--bg);
+  font-family: "Montserrat", sans-serif;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* top bar with back link and logo */
 .top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-    border-bottom: 1px solid var(--border);
-    background: #0d0d0d;
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: #0d0d0d;
+  flex-shrink: 0;
 }
 
 .back-link {
-    font-size: 13px;
-    color: var(--text-muted);
-    transition: color 0.2s;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color 0.2s;
 }
 
 .back-link:hover {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .top-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    color: var(--accent);
-    letter-spacing: 3px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 3px;
 }
 
 /* center the auth box */
 .auth-wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .auth-box {
-    width: 100%;
-    max-width: 400px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px 36px;
-    position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+  position: relative;
 }
 
 /* hide register by default jquery toggles it */
 .register-form {
-    display: none;
+  display: none;
 }
 
 /* form headings */
 .auth-box h2 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 6px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
 }
 
 .auth-sub {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 28px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
 }
 
 /* input fields */
 .field-group {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .field-group input {
-    width: 100%;
-    background: #161616;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 11px 14px;
-    color: var(--text);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  background: #161616;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .field-group input::placeholder {
-    color: var(--text-dim);
+  color: var(--text-dim);
 }
 
 .field-group input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.1);
 }
 
 /* error message */
 .form-err {
-    font-size: 12px;
-    color: var(--red);
-    min-height: 16px;
-    margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--red);
+  min-height: 16px;
+  margin-bottom: 12px;
 }
 
 /* ============================================
@@ -154,112 +151,135 @@ a {
    ============================================ */
 
 .glow-btn {
-    position: relative;
-    display: block;
-    padding: 12px 24px;
-    color: var(--accent);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-align: center;
-    overflow: hidden;
-    transition: background 0.3s, color 0.3s;
-    border-radius: 8px;
-    margin-top: 4px;
-    margin-bottom: 18px;
-    border: 1px solid transparent;
+  position: relative;
+  display: block;
+  padding: 12px 24px;
+  color: var(--accent);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  overflow: hidden;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  border-radius: 8px;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  border: 1px solid transparent;
 }
 
 .glow-btn:hover {
-    background: var(--accent);
-    color: #000;
-    border-radius: 8px;
-    box-shadow: 0 0 6px var(--accent),
-                0 0 20px var(--accent),
-                0 0 40px rgba(0, 200, 255, 0.4);
+  background: var(--accent);
+  color: #000;
+  border-radius: 8px;
+  box-shadow:
+    0 0 6px var(--accent),
+    0 0 20px var(--accent),
+    0 0 40px rgba(0, 200, 255, 0.4);
 }
 
 /* the four animated border lines original from login,signup.css */
 .glow-btn span {
-    position: absolute;
-    display: block;
+  position: absolute;
+  display: block;
 }
 
 .glow-btn span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent));
-    animation: btn-anim1 1.2s linear infinite;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  animation: btn-anim1 1.2s linear infinite;
 }
 
 @keyframes btn-anim1 {
-    0%      { left: -100%; }
-    50%, 100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
 }
 
 .glow-btn span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, var(--accent));
-    animation: btn-anim2 1.2s linear infinite;
-    animation-delay: 0.3s;
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--accent));
+  animation: btn-anim2 1.2s linear infinite;
+  animation-delay: 0.3s;
 }
 
 @keyframes btn-anim2 {
-    0%      { top: -100%; }
-    50%, 100% { top: 100%; }
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
 }
 
 .glow-btn span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, var(--accent));
-    animation: btn-anim3 1.2s linear infinite;
-    animation-delay: 0.6s;
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, var(--accent));
+  animation: btn-anim3 1.2s linear infinite;
+  animation-delay: 0.6s;
 }
 
 @keyframes btn-anim3 {
-    0%      { right: -100%; }
-    50%, 100% { right: 100%; }
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
 }
 
 .glow-btn span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, var(--accent));
-    animation: btn-anim4 1.2s linear infinite;
-    animation-delay: 0.9s;
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, var(--accent));
+  animation: btn-anim4 1.2s linear infinite;
+  animation-delay: 0.9s;
 }
 
 @keyframes btn-anim4 {
-    0%      { bottom: -100%; }
-    50%, 100% { bottom: 100%; }
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
 }
 
 /* switch message (Already registered? Sign In) */
 .switch-msg {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 .switch-link {
-    color: var(--accent);
-    font-weight: 600;
-    transition: opacity 0.2s;
+  color: var(--accent);
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
 .switch-link:hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 /* ============================================
@@ -267,7 +287,7 @@ a {
    ============================================ */
 
 @media (max-width: 480px) {
-    .auth-box {
-        padding: 28px 22px;
-    }
+  .auth-box {
+    padding: 28px 22px;
+  }
 }
