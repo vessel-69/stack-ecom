@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- kept from original, just moved the css to design folder -->
     <link rel="stylesheet" href="design/tit.css">
     <link rel="website icon" type="png" href="logos/Atom.png">
+
+    <!-- added some fonts to make it look nicer -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>STACK </title>
+
+    <title>STACK — Tech & Gaming Store</title>
 </head>
 <body>
 
-    <!-- TOP HEADER  -->
+    <!-- ========== TOP HEADER ========== -->
     <header class="main-header">
 
         <div class="logo-wrap">
@@ -29,7 +34,7 @@
             </ul>
         </nav>
 
-        <!-- search bars -->
+        <!-- search bar - i added live search filter in js -->
         <div class="search-wrap">
             <input class="search-input" id="searchBar" placeholder="Search products..." type="search" onkeyup="filterProducts()">
             <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -38,6 +43,7 @@
         </div>
 
         <div class="header-right">
+            <!-- cart icon with counter - js updates this when you add stuff -->
             <div class="cart-icon-wrap" id="cartWrap">
                 <span class="cart-icon">🛒</span>
                 <span class="cart-badge" id="cartBadge">0</span>
@@ -47,10 +53,10 @@
 
     </header>
 
-    <!--  toast notification  -->
+    <!-- small toast notification that pops up when you add to cart -->
     <div class="toast" id="toastMsg"></div>
 
-    <!--  SECOND NAV  -->
+    <!-- ========== SECOND NAV ========== -->
     <nav class="sub-nav">
         <ul>
             <li><a href="helpandsupport.html">Help &amp; Support</a></li>
@@ -59,7 +65,7 @@
         </ul>
     </nav>
 
-    <!--  HERO BANNER  -->
+    <!-- ========== HERO BANNER ========== -->
     <section class="hero">
         <div class="hero-text">
             <p class="hero-tag">NEW ARRIVALS DROPPED</p>
@@ -69,7 +75,7 @@
         <div class="hero-glow"></div>
     </section>
 
-    <!--  MAIN PRODUCTS  -->
+    <!-- ========== MAIN PRODUCTS ========== -->
     <main>
         <section id="products">
             <h2 class="section-title">🔥 Hot Products</h2>
@@ -491,7 +497,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2023 STACK E-commerce. All rights reserved — vessel-69</p>    
+            <p>&copy; 2023 STACK E-commerce. All rights reserved — Team B.</p>
         </div>
     </footer>
 

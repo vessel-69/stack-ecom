@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" type="png" href="logos/Atom.png">
+    <link rel="stylesheet" href="design/pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>STACK — Become a Seller</title>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-wrap">
+            <a href="tit.html">
+                <img src="logos/Atom.png" alt="Stack Logo" width="38">
+                <span class="site-name">STACK</span>
+            </a>
+        </div>
+        <nav class="top-nav">
+            <ul>
+                <li><a href="Aboutus.html">About Us</a></li>
+                <li><a href="becomeaseller.html" class="active-link">Become a Seller</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="login,signup.html" class="login-btn">LOGIN</a>
+        </div>
+    </header>
+
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="helpandsupport.html">Help &amp; Support</a></li>
+            <li><a href="affiliateprogram.html">Affiliate Program</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-hero">
+        <p class="page-hero-tag">Seller Program</p>
+        <h1>Become a <span>Seller</span></h1>
+        <p>This feature is coming soon — but if you want to sell on STACK when it drops, get your name in early</p>
+        <div class="hero-deco"></div>
+    </section>
+
+    <div class="page-content">
+
+        <div class="coming-soon-banner">
+            <p class="cs-tag">Feature in progress</p>
+            <h2>Seller Portal — Loading</h2>
+            <p>We're building the seller dashboard rn — it's going to be goated when it's ready, just not yet</p>
+        </div>
+
+        <!-- how it'll work -->
+        <h2 class="section-heading">How it'll work</h2>
+
+        <div class="cards-grid">
+
+            <div class="info-card">
+                <span class="card-number">STEP 01</span>
+                <h3>Create a seller account</h3>
+                <p>Sign up with your details and get verified — takes a few hours max</p>
+            </div>
+
+            <div class="info-card">
+                <span class="card-number">STEP 02</span>
+                <h3>List your products</h3>
+                <p>Upload images, set your prices, add descriptions — your storefront your rules</p>
+            </div>
+
+            <div class="info-card">
+                <span class="card-number">STEP 03</span>
+                <h3>Start selling</h3>
+                <p>Once listed your products go live — real ones start getting orders immediately</p>
+            </div>
+
+            <div class="info-card">
+                <span class="card-number">STEP 04</span>
+                <h3>Get paid</h3>
+                <p>Payments processed within 3-5 business days — lowkey the best part</p>
+            </div>
+
+        </div>
+
+        <!-- register interest form -->
+        <h2 class="section-heading">Register Interest</h2>
+
+        <div class="form-card">
+            <h3>Get notified when seller portal drops</h3>
+            <p class="form-sub">Leave your info below and we'll hit you up the moment it's live — no spam, on god</p>
+
+            <div class="form-group">
+                <label for="sName">Full Name</label>
+                <input type="text" id="sName" placeholder="Your actual name">
+            </div>
+
+            <div class="form-group">
+                <label for="sEmail">Email</label>
+                <input type="email" id="sEmail" placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="sCategory">What will you sell</label>
+                <select id="sCategory">
+                    <option value="">Select category</option>
+                    <option value="tech">Tech &amp; Gaming</option>
+                    <option value="fitness">Fitness Equipment</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="other">Something else</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sMsg">Anything else we should know</label>
+                <textarea id="sMsg" placeholder="Optional — but feel free to flex"></textarea>
+            </div>
+
+            <button class="submit-btn" onclick="submitSeller()">Register Interest</button>
+            <p class="form-msg" id="sellerMsg"></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="logos/Atom.png" alt="Stack logo">
+                <span class="footer-name">STACK</span>
+                <p class="footer-tagline">Build your setup — your way</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="Aboutus.html">About Us</a></li>
+                    <li><a href="becomeaseller.html">Become a Seller</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="helpandsupport.html">Help &amp; Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-socials">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/sw_aayush/" target="_blank" class="soc-link">
+                        <img src="logos/instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://www.youtube.com/@aayush_workout" target="_blank" class="soc-link">
+                        <img src="logos/Youtube.png" alt="YouTube">
+                    </a>
+                    <a href="https://www.facebook.com/https.aayushdev" target="_blank" class="soc-link">
+                        <img src="logos/facebook.png" alt="Facebook">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 STACK E-commerce — All rights reserved — Team B</p>
+        </div>
+    </footer>
+
+    <script>
+        function submitSeller() {
+            var name  = document.getElementById('sName').value.trim();
+            var email = document.getElementById('sEmail').value.trim();
+            var box   = document.getElementById('sellerMsg');
+
+            if (name === '' || email === '') {
+                box.textContent = 'Name and email are required ngl';
+                box.className = 'form-msg error';
+                return;
+            }
+
+            if (!email.includes('@') || email.indexOf('.', email.indexOf('@')) < 0) {
+                box.textContent = 'That doesn\'t look like a real email';
+                box.className = 'form-msg error';
+                return;
+            }
+
+            box.textContent = 'Registered — we\'ll let you know when it\'s ready, no cap';
+            box.className = 'form-msg success';
+
+            document.getElementById('sName').value  = '';
+            document.getElementById('sEmail').value = '';
+            document.getElementById('sMsg').value   = '';
+        }
+    </script>
+
+</body>
+</html>

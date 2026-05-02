@@ -1,0 +1,723 @@
+/* ============================================
+   STACK — pages.css
+   shared styles for all the inner pages
+   (about, contact, services, help, affiliate etc)
+   ============================================ */
+
+:root {
+    --bg:          #0a0a0a;
+    --bg-card:     #111111;
+    --bg-header:   #0d0d0d;
+    --bg-subnav:   #0f0f0f;
+    --border:      #1e1e1e;
+    --accent:      #00c8ff;
+    --accent-dim:  rgba(0, 200, 255, 0.12);
+    --accent-glow: rgba(0, 200, 255, 0.22);
+    --text:        #e0e0e0;
+    --text-muted:  #777;
+    --text-dim:    #444;
+    --white:       #ffffff;
+    --red:         #ff4545;
+    --green:       #00e676;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border);
+    height: 68px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.logo-wrap a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-wrap img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.site-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 3px;
+}
+
+.top-nav {
+    display: flex;
+    margin-left: 10px;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+}
+
+.top-nav ul li a {
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.top-nav ul li a:hover,
+.top-nav ul li a.active-link {
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.login-btn {
+    padding: 8px 18px;
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    border-radius: 7px;
+    color: var(--accent);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.login-btn:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+/* sub nav */
+.sub-nav {
+    background: var(--bg-subnav);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    flex-shrink: 0;
+}
+
+.sub-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.sub-nav ul li a {
+    display: block;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.sub-nav ul li a:hover {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+}
+
+/* ============================================
+   PAGE HERO / BANNER
+   ============================================ */
+
+.page-hero {
+    padding: 52px 28px 44px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.page-hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(34px, 5vw, 60px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 14px;
+}
+
+.page-hero h1 span {
+    color: var(--accent);
+}
+
+.page-hero p {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.65;
+}
+
+.hero-deco {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse at right top, rgba(0,200,255,0.07) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+/* ============================================
+   PAGE CONTENT AREA
+   ============================================ */
+
+.page-content {
+    flex: 1;
+    padding: 40px 28px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* info card */
+.info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
+}
+
+.info-card:hover {
+    border-color: rgba(0, 200, 255, 0.25);
+}
+
+.info-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.info-card p,
+.info-card li {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 6px;
+}
+
+.info-card ul,
+.info-card ol {
+    padding-left: 18px;
+    margin-top: 8px;
+}
+
+.info-card .card-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* grid for cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* section heading inside content */
+.section-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 32px 0 16px;
+    letter-spacing: 0.5px;
+}
+
+.section-heading:first-child {
+    margin-top: 0;
+}
+
+/* ============================================
+   FORMS (contact, seller, affiliate)
+   ============================================ */
+
+.form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 28px;
+    max-width: 560px;
+}
+
+.form-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+}
+
+.form-card .form-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background: #161616;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-dim);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.form-group select option {
+    background: #1a1a1a;
+    color: var(--text);
+}
+
+.submit-btn {
+    padding: 11px 26px;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s, transform 0.1s;
+    width: auto;
+    height: auto;
+}
+
+.submit-btn:hover {
+    opacity: 0.88;
+}
+
+.submit-btn:active {
+    transform: scale(0.97);
+}
+
+/* form response message */
+.form-msg {
+    margin-top: 14px;
+    font-size: 13px;
+    min-height: 18px;
+}
+
+.form-msg.success {
+    color: var(--green);
+}
+
+.form-msg.error {
+    color: var(--red);
+}
+
+/* ============================================
+   COMING SOON BANNER
+   ============================================ */
+
+.coming-soon-banner {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    border-radius: 12px;
+    padding: 32px 28px;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.coming-soon-banner .cs-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.coming-soon-banner h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.coming-soon-banner p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   TEAM CARDS
+   ============================================ */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.team-card:hover {
+    border-color: rgba(0, 200, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.team-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1.5px solid rgba(0,200,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--accent);
+}
+
+.team-card h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.team-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   SERVICES / FEATURE CARDS
+   ============================================ */
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 22px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-card:hover {
+    border-color: rgba(0,200,255,0.3);
+    transform: translateY(-2px);
+}
+
+.feature-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+    line-height: 1;
+}
+
+.feature-card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+    background: #0d0d0d;
+    border-top: 1px solid var(--border);
+    padding: 40px 28px 0;
+    flex-shrink: 0;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 36px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-brand img {
+    width: 34px;
+    opacity: 0.9;
+}
+
+.footer-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 3px;
+}
+
+.footer-tagline {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.footer-links h4,
+.footer-socials h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links ul li a {
+    font-size: 13px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent);
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.soc-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #161616;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+}
+
+.soc-link img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.7);
+    transition: filter 0.2s;
+}
+
+.soc-link:hover img {
+    filter: none;
+}
+
+.soc-link:hover {
+    border-color: #333;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 18px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
+    .top-nav {
+        display: none;
+    }
+
+    .header-right {
+        margin-left: auto;
+    }
+
+    .page-content {
+        padding: 28px 16px;
+    }
+
+    .page-hero {
+        padding: 36px 16px 30px;
+    }
+
+    .form-card {
+        padding: 24px 18px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-name {
+        font-size: 16px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .page-hero h1 {
+        font-size: 32px;
+    }
+}
