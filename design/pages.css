@@ -721,8 +721,6 @@ footer {
         font-size: 32px;
     }
 }
-   SOCIAL ICONS - Font Awesome version
-   ============================================ */
 
 .soc-link i {
     font-size: 17px;
@@ -734,7 +732,7 @@ footer {
 .soc-link.soc-ig:hover i { color: #e1306c; }
 .soc-link.soc-gh:hover i { color: #e0e0e0; }
 .soc-link.soc-li:hover i { color: #0077b5; }
-}
+
 
 .profile-greeting {
     padding: 4px 16px 10px;
