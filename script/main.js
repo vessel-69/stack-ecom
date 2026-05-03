@@ -1,44 +1,40 @@
-// FUNCTION 2: filterProducts - live search
-
 function filterProducts() {
-  var searchInput = document.getElementById("searchBar");
-  var searchText = searchInput ? searchInput.value.toLowerCase() : "";
-  var allProducts = document.querySelectorAll(".product");
-  var visible = 0;
+    var q    = document.getElementById('searchBar');
+    var text = q ? q.value.toLowerCase() : '';
+    var cards = document.querySelectorAll('.product');
+    var visible = 0;
 
-  for (var i = 0; i < allProducts.length; i++) {
-    var card = allProducts[i];
-    var name = card.getAttribute("data-name");
-    if (name && name.includes(searchText)) {
-      card.style.display = "flex";
-      visible += 1;
-    } else {
-      card.style.display = "none";
+    for (var i = 0; i < cards.length; i++) {
+        var name = cards[i].getAttribute('data-name') || '';
+        if (name.includes(text)) {
+            cards[i].style.display = 'flex';
+            visible++;
+        } else {
+            cards[i].style.display = 'none';
+        }
     }
-  }
 
-  var noResults = document.getElementById("noResults");
-  if (noResults) noResults.style.display = visible === 0 ? "block" : "none";
+    var msg = document.getElementById('noResults');
+    if (msg) msg.style.display = visible === 0 ? 'block' : 'none';
 }
 
-// FUNCTION 3: toggleWishlist
-function toggleWishlist(button) {
-  if (button.classList.contains("wishlisted")) {
-    button.classList.remove("wishlisted");
-    button.textContent = "\u2661";
-  } else {
-    button.classList.add("wishlisted");
-    button.textContent = "\u2665";
-    button.style.transform = "scale(1.3)";
-    setTimeout(function () {
-      button.style.transform = "scale(1)";
-    }, 200);
-  }
+function toggleWishlist(btn) {
+    if (btn.classList.contains('saved')) {
+        btn.classList.remove('saved');
+        btn.textContent = '\u2661';
+    } else {
+        btn.classList.add('saved');
+        btn.textContent = '\u2665';
+        btn.style.transform = 'scale(1.3)';
+        setTimeout(function() { btn.style.transform = ''; }, 200);
+    }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var btns = document.querySelectorAll(".wishlist-btn");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].style.transition = "transform 0.2s, color 0.2s, border-color 0.2s";
-  }
-});
+function toggleDetails(id, btn) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    var open = panel.style.display === 'block';
+    panel.style.display = open ? 'none' : 'block';
+    btn.textContent     = open ? '+ See Details' : '- Hide Details';
+    btn.style.color     = open ? '' : '#00c8ff';
+}

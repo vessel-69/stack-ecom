@@ -1,109 +1,76 @@
-// FUNCTION 1: toggleDetails - reveal/hide spec panels
-function toggleDetails(panelId, button) {
-  var panel = document.getElementById(panelId);
-  if (!panel) return;
-  if (panel.style.display === "none" || panel.style.display === "") {
-    panel.style.display = "block";
-    button.textContent = "- Hide Details";
-    button.style.color = "#00c8ff";
-  } else {
-    panel.style.display = "none";
-    button.textContent = "+ See Details";
-    button.style.color = "";
-  }
-}
+function sortProducts(cat, btn) {
+    var cards = document.querySelectorAll('.product');
+    for (var i = 0; i < cards.length; i++) {
+        var c = cards[i].getAttribute('data-category');
+        cards[i].style.display = (cat === 'all' || c === cat) ? 'block' : 'none';
+    }
 
-// FUNCTION 2: validateNewsletter
-function validateNewsletter() {
-  var emailField = document.getElementById("emailInput");
-  var messageBox = document.getElementById("newsletterMsg");
-  if (!emailField || !messageBox) return;
-  var val = emailField.value.trim();
+    var btns = document.querySelectorAll('.filter-btn');
+    for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+    btn.classList.add('active');
 
-  if (!val) {
-    messageBox.textContent = "Enter your email first";
-    messageBox.className = "newsletter-msg error";
-    return;
-  }
-  if (!val.includes("@") || val.indexOf(".", val.indexOf("@")) < 0) {
-    messageBox.textContent = "That does not look like a valid email";
-    messageBox.className = "newsletter-msg error";
-    return;
-  }
-
-  messageBox.textContent = "Subscribed - expect good stuff in your inbox";
-  messageBox.className = "newsletter-msg success";
-  emailField.value = "";
-  setTimeout(function () {
-    messageBox.textContent = "";
-    messageBox.className = "newsletter-msg";
-  }, 5000);
-}
-
-// FUNCTION 3: sortProducts - category filter buttons
-function sortProducts(category, clickedButton) {
-  var allProducts = document.querySelectorAll(".product");
-  for (var i = 0; i < allProducts.length; i++) {
-    var card = allProducts[i];
-    var cat = card.getAttribute("data-category");
-    card.style.display =
-      category === "all" || cat === category ? "block" : "none";
-  }
-
-  var allBtns = document.querySelectorAll(".filter-btn");
-  for (var j = 0; j < allBtns.length; j++)
-    allBtns[j].classList.remove("active");
-  clickedButton.classList.add("active");
-
-  var labels = {
-    all: "All Products",
-    fitness: "Fitness Gear",
-    tech: "Tech and Components",
-    sports: "Sports",
-    coming: "Coming Soon",
-  };
-  var title = document.querySelector(".section-title");
-  if (title) title.textContent = labels[category] || "All Products";
+    var labels = {
+        all:     'All Products',
+        fitness: 'Fitness Gear',
+        tech:    'Tech and Components',
+        sports:  'Sports',
+        coming:  'Coming Soon'
+    };
+    var title = document.querySelector('.section-title');
+    if (title) title.textContent = labels[cat] || 'All Products';
 }
 
 function filterProducts() {
-  var searchInput = document.getElementById("searchBar");
-  var searchText = searchInput ? searchInput.value.toLowerCase() : "";
-  var allProducts = document.querySelectorAll(".product");
-  var visible = 0;
-
-  for (var i = 0; i < allProducts.length; i++) {
-    var card = allProducts[i];
-    var name = card.getAttribute("data-name");
-    if (name && name.includes(searchText)) {
-      card.style.display = "block";
-      visible += 1;
-    } else {
-      card.style.display = "none";
+    var q    = document.getElementById('searchBar');
+    var text = q ? q.value.toLowerCase() : '';
+    var cards = document.querySelectorAll('.product');
+    var vis = 0;
+    for (var i = 0; i < cards.length; i++) {
+        var name = cards[i].getAttribute('data-name') || '';
+        if (name.includes(text)) {
+            cards[i].style.display = 'block';
+            vis++;
+        } else {
+            cards[i].style.display = 'none';
+        }
     }
-  }
-
-  var noResults = document.getElementById("noResults");
-  if (noResults) noResults.style.display = visible === 0 ? "block" : "none";
+    var msg = document.getElementById('noResults');
+    if (msg) msg.style.display = vis === 0 ? 'block' : 'none';
 }
 
-function toggleWishlist(button) {
-  if (button.classList.contains("wishlisted")) {
-    button.classList.remove("wishlisted");
-    button.textContent = "\u2661";
-  } else {
-    button.classList.add("wishlisted");
-    button.textContent = "\u2665";
-    button.style.transform = "scale(1.3)";
-    setTimeout(function () {
-      button.style.transform = "scale(1)";
-    }, 200);
-  }
+function toggleDetails(id, btn) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    var open = panel.style.display === 'block';
+    panel.style.display = open ? 'none' : 'block';
+    btn.textContent     = open ? '+ See Details' : '- Hide Details';
+    btn.style.color     = open ? '' : '#00c8ff';
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var btns = document.querySelectorAll(".wishlist-btn");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].style.transition = "transform 0.2s, color 0.2s, border-color 0.2s";
-  }
-});
+function validateNewsletter() {
+    var field = document.getElementById('emailInput');
+    var msg   = document.getElementById('newsletterMsg');
+    if (!field || !msg) return;
+    var val = field.value.trim();
+    if (!val || !val.includes('@')) {
+        msg.textContent = 'Enter a valid email';
+        msg.className   = 'newsletter-msg error';
+        return;
+    }
+    msg.textContent = 'Subscribed - good stuff incoming';
+    msg.className   = 'newsletter-msg success';
+    field.value     = '';
+    setTimeout(function() { msg.textContent = ''; msg.className = 'newsletter-msg'; }, 4000);
+}
+
+function toggleWishlist(btn) {
+    if (btn.classList.contains('saved')) {
+        btn.classList.remove('saved');
+        btn.textContent = '\u2661';
+    } else {
+        btn.classList.add('saved');
+        btn.textContent = '\u2665';
+        btn.style.transform = 'scale(1.3)';
+        setTimeout(function() { btn.style.transform = ''; }, 200);
+    }
+}
