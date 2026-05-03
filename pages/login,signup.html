@@ -1,105 +1,93 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="website icon" type="png" href="../logos/Atom.png" />
-    <link rel="stylesheet" href="../design/login.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" type="png" href="../logos/Atom.png">
+    <link rel="stylesheet" href="../design/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <title>STACK - Login / Sign Up</title>
-  </head>
-  <body>
+</head>
+<body>
+
+    
     <div class="top-bar">
-      <span class="top-logo">
-        <img src="../logos/Atom.png" alt="Stack" width="22" />
-        <span>STACK</span>
-      </span>
-      <a href="../tit.html" class="back-link">&#8592; Back to Store</a>
+        <a href="../tit.html" class="back-link">&#8592; Back to Store</a>
+        <span class="top-logo">
+            <img src="../logos/Atom.png" alt="Stack" width="22">
+            <span>STACK</span>
+        </span>
     </div>
 
     <div class="auth-wrapper">
-      <div class="auth-box">
-        <!-- REGISTER FORM -->
-        <form class="register-form" id="registerForm">
-          <h2>Create Account</h2>
-          <p class="auth-sub">New here, let's get you set up now</p>
 
-          <div class="field-group">
-            <input type="text" id="regName" placeholder="Full Name" required />
-          </div>
-          <div class="field-group">
-            <input type="text" id="regUser" placeholder="Username" required />
-          </div>
-          <div class="field-group">
-            <input type="email" id="regEmail" placeholder="Email" required />
-          </div>
-          <div class="field-group">
-            <input
-              type="password"
-              id="regPass"
-              placeholder="Password"
-              required
-            />
-          </div>
+        <div class="auth-box">
 
-          <p class="form-err" id="regErr"></p>
+            
+            <form class="register-form" id="registerForm">
+                <h2>Create Account</h2>
+                <p class="auth-sub">New here, let's get you set up now</p>
 
-          <a class="glow-btn" id="createBtn" href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            CREATE ACCOUNT
-          </a>
+                <div class="field-group">
+                    <input type="text" id="regName" placeholder="Full Name" required>
+                </div>
+                <div class="field-group">
+                    <input type="text" id="regUser" placeholder="Username" required>
+                </div>
+                <div class="field-group">
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                </div>
+                <div class="field-group">
+                    <input type="password" id="regPass" placeholder="Password" required>
+                </div>
 
-          <p class="switch-msg">
-            Already have an account? <a href="#" class="switch-link">Sign In</a>
-          </p>
-        </form>
+                <p class="form-err" id="regErr"></p>
 
-        <form class="login-form" id="loginForm">
-          <h2>Welcome Back</h2>
-          <p class="auth-sub">Sign in to your STACK account</p>
+                
+                <a class="glow-btn" id="createBtn" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    CREATE ACCOUNT
+                </a>
 
-          <div class="field-group">
-            <input
-              type="text"
-              id="logUser"
-              placeholder="Username or Email"
-              required
-            />
-          </div>
-          <div class="field-group">
-            <input
-              type="password"
-              id="logPass"
-              placeholder="Password"
-              required
-            />
-          </div>
+                <p class="switch-msg">Already have an account? <a href="#" class="switch-link">Sign In</a></p>
+            </form>
 
-          <p class="form-err" id="logErr"></p>
+            
+            <form class="login-form" id="loginForm">
+                <h2>Welcome Back</h2>
+                <p class="auth-sub">Sign in to your STACK account</p>
 
-          <a class="glow-btn" id="signinBtn" href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            SIGN IN
-          </a>
+                <div class="field-group">
+                    <input type="text" id="logUser" placeholder="Username or Email" required>
+                </div>
+                <div class="field-group">
+                    <input type="password" id="logPass" placeholder="Password" required>
+                </div>
 
-          <p class="switch-msg">
-            Don't have an account? <a href="#" class="switch-link">Register</a>
-          </p>
-        </form>
-      </div>
+                <p class="form-err" id="logErr"></p>
+
+                <a class="glow-btn" id="signinBtn" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    SIGN IN
+                </a>
+
+                <p class="switch-msg">Don't have an account? <a href="#" class="switch-link">Register</a></p>
+            </form>
+
+        </div>
+
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https:
     <script src="../script/login.js"></script>
-  </body>
+
+</body>
 </html>
