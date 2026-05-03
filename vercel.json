@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/tit.html" },
+    { "source": "/home", "destination": "/pages/home.html" },
+    { "source": "/page2", "destination": "/pages/page2.html" },
+    { "source": "/about", "destination": "/pages/Aboutus.html" },
+    { "source": "/contact", "destination": "/pages/contactus.html" },
+    { "source": "/seller", "destination": "/pages/becomeaseller.html" },
+    { "source": "/affiliate", "destination": "/pages/affiliateprogram.html" },
+    { "source": "/help", "destination": "/pages/helpandsupport.html" },
+    { "source": "/services", "destination": "/pages/services.html" },
+    { "source": "/login", "destination": "/pages/login,signup.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    }
+  ]
+}
